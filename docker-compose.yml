@@ -1,0 +1,20 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: resolvex-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: resolvex
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  ai-service:
+    build: ./ai-service
+    container_name: resolvex-ai
+    ports:
+      - "5001:5001"
+
+volumes:
+  mysql_data:
